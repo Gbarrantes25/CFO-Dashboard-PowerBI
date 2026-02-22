@@ -27,7 +27,7 @@ La finalidad de este proyecto es revisar la salud financiera de la empresa.
 ## ⚙️ Configuración del Entorno
 - Software Necesario: Power BI Desktop.
 - Instalación:
-  - Descargar [Supermarket Sales.pbix](https://github.com/Gbarrantes25/Supermarket-Sales-Dashboard-PowerBI/blob/main/Supermarket%20Sales.pbix) con Power BI Desktop.
+  - Descargar [Chief Financial Officer.pbix](https://github.com/Gbarrantes25/CFO-Dashboard-PowerBI/blob/main/Chief%20Financial%20Officer.pbix) con Power BI Desktop.
   - Entrar a Inicio y darle click a "Actualizar".
 
 
@@ -42,8 +42,9 @@ La finalidad de este proyecto es revisar la salud financiera de la empresa.
 
 ## ✅ Características Principales
 - Transformaciones en Power Query: Se realizaron procesos de limpieza y modelado de datos para optimizar el rendimiento.
-- Creación de tabla calendario y tabla mode (mode light/dark)
+- Creación de tabla calendario.
 - Medidas DAX:
+- Funciones Definidas por el Usuario (UDF):
  
 - Diseño Interactivo: Uso de paginado para navegación, marcadores y segmentación de datos.
 
