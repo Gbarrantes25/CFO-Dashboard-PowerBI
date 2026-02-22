@@ -33,10 +33,10 @@ La finalidad de este proyecto es revisar la salud financiera de la empresa.
 
 ## 📂 Estructura del Repositorio
 <code>.
-  ├── Data Source                  # Contiene las tablas en formato .csv
-  |── Images                       # Carpeta donde se alojan los íconos.
-  ├── Supermarket Sales.pbix       # Archivo que será ejecutado con Power BI Desktop.
-  └── README.md                    # Este archivo.
+  ├── Data Source                        # Contiene las tablas en formato .xlsx
+  |── Images                             # Carpeta donde se alojan los íconos.
+  ├── Chief Financial Officer.pbix       # Archivo que será ejecutado con Power BI Desktop.
+  └── README.md                          # Este archivo.
 </code>
 
 
