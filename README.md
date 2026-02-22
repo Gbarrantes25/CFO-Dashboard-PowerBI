@@ -14,12 +14,15 @@ La finalidad de este proyecto es revisar la salud financiera de la empresa.
 ## 🛠️ Herramientas y Tecnologías Utilizadas
 - Visualización: Power BI Desktop.
 - Fuente de Datos:
-  - [DimBranch.csv](https://github.com/Gbarrantes25/Supermarket-Sales-Dashboard-PowerBI/blob/main/Data%20Source/DimBranch.csv)
-  - [DimCustomer.csv](https://github.com/Gbarrantes25/Supermarket-Sales-Dashboard-PowerBI/blob/main/Data%20Source/DimCustomer.csv)
-  - [DimProducts.csv](https://github.com/Gbarrantes25/Supermarket-Sales-Dashboard-PowerBI/blob/main/Data%20Source/DimProducts.csv)
-  - [DimSeller.csv](https://github.com/Gbarrantes25/Supermarket-Sales-Dashboard-PowerBI/blob/main/Data%20Source/DimSeller.csv)
-  - [FactSales.csv](https://raw.githubusercontent.com/Gbarrantes25/Supermarket-Sales-Dashboard-PowerBI/refs/heads/main/Data%20Source/FactSales.csv)
-  - [DimPPTO.csv](https://github.com/Gbarrantes25/Supermarket-Sales-Dashboard-PowerBI/blob/main/Data%20Source/DimPPTO.csv)
+  - [DimCenterCost.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vQ6PFClLjBQaGVinUTTAXvkXU9rfNwU-3kiuux2qMyL-WZl7p7AjV3gJRHp8UhZhuz_MLB8PLyaL8z1/pubhtml?gid=1517220622&single=true)
+  - [DimDocument.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vTQruzVx53OPt6nqljWb9V0UhzNSA-1QDAqtTc7W8rvEqivT19gLfvHCmXC9q5nKpwBjT9Qh_1o7595/pubhtml?gid=775268392&single=true)
+  - [DimEntity.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vQdYxEJXUrJNWj8e_BcxMak93N0ovnqHPsCZdokK_iZm4UyWCMBerzpfZDUcbVO4ma1ZKAYeFwKGh-V/pubhtml?gid=1860496830&single=true)
+  - [DimProduct.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vSTxIpD47q6jTtZ_hJNbzMUgSWeUIa_PyrKuRk5f5HUcqzEKc27Lz0iDX_Jb09mLrxgNussrsBu7dT5/pubhtml?gid=248530384&single=true)
+  - [DimSubcategory.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vR-7RPQosGMlYZkvK3IKwo5y0rfu0R30MR5KTvHY-vq-UF476O0ussKhzuJ5_hfCZowZ9Zo9WmoyX_C/pubhtml?gid=571723735&single=true)
+  - [DimBranch.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vRrnh7vDS9fWZCEFM33f8N4ONGDAaNxtVZlCXSu1Xkk4VzeMw6crpXo3oNwvHwDch6I3bS6qCbjt-tq/pubhtml?gid=1431746542&single=true)
+  - [Fact-Expenses.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vReNKN_bEEzeArYYgZhg6byO1LisSmkZIlHusdULdL_1yk5RSIeJKxbUInfsExxUYYQ9YbpSXchhv7X/pubhtml?gid=354373430&single=true)
+  - [Fact-Revenue.csv](https://docs.google.com/spreadsheets/d/e/2PACX-1vRebdrai3eny64GPrLjRAXhuSBqzXV18BFVRNUi4ULliH3oE4Py7HgJ5Ri4DK8QM9S6jmMKjRUqZrcG/pubhtml?gid=147943285&single=true)
+
     
 - Lenguajes: DAX para las medidas calculadas y Power Query (Lenguaje M) para la transformación de datos.
 
@@ -51,11 +54,10 @@ La finalidad de este proyecto es revisar la salud financiera de la empresa.
 ## 🖼️ Vistas Previas del proyecto
 <details>
   <summary>Capturas</summary>
+    <img width="1911" height="1064" alt="image" src="https://github.com/user-attachments/assets/a5976e58-5afd-4d45-ac86-79416ee37b7d" />
+    <img width="1910" height="1067" alt="image" src="https://github.com/user-attachments/assets/65107f03-de5f-4e78-89cf-f04146ff8ab0" />
+    <img width="1905" height="1060" alt="image" src="https://github.com/user-attachments/assets/7ac6b2d9-ecb9-4628-add3-75c9ee545ac6" />
 
-  <img width="1894" height="1064" alt="image" src="https://github.com/user-attachments/assets/be13fcfc-a3b5-4dca-8e7d-14471dcb7072" />
-  <img width="1883" height="1054" alt="image" src="https://github.com/user-attachments/assets/fd9e6fe1-4336-4bb8-8c04-e0a22c7adaad" />
-  <img width="1874" height="1049" alt="image" src="https://github.com/user-attachments/assets/c701d2ff-c488-4699-ab92-5839d05dfec3" />
-  <img width="1881" height="1045" alt="image" src="https://github.com/user-attachments/assets/071ede32-2c46-4135-93de-5f1b19ad0c26" />
 </details>
 
 <details>
