@@ -1,7 +1,7 @@
 # CFO-Dashboard-PowerBI
 
 ## 📃 Descripción General
-Este proyecto fue elaborado con información ficticia de una empresa del rubro fastfood con una oficina central y 5 tiendas en Perú. Los datos empleados son ficticios.
+Este proyecto fue elaborado para una empresa del rubro fastfood con una oficina central y 5 tiendas en Perú. Los datos empleados son ficticios.
 La finalidad de este proyecto es revisar la salud financiera de la empresa.
 
 
