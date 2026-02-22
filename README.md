@@ -180,7 +180,7 @@ La finalidad de este proyecto es revisar la salud financiera de la empresa.
 
 <details>
   <summary>Video</summary>
-  https://youtu.be/NiG0zqzfKKQ?si=KqO9DkIukfFloHaU
+  https://www.youtube.com/watch?v=ISpue331_Y8
 </details>
 
 
