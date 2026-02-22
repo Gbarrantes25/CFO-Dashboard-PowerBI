@@ -166,7 +166,7 @@ La finalidad de este proyecto es revisar la salud financiera de la empresa.
     		)
     </code>
     </details> 
-- Funciones Definidas por el Usuario (UDF):
+- Funciones Definidas por el Usuario (UDF): [UDF](https://github.com/Gbarrantes25/CFO-Dashboard-PowerBI/blob/main/Udf.txt)
 - Diseño Interactivo: Uso de paginado para navegación, marcadores y segmentación de datos.
 
 ## 🖼️ Vistas Previas del proyecto
