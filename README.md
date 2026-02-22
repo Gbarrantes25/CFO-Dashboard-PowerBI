@@ -39,6 +39,7 @@ La finalidad de este proyecto es revisar la salud financiera de la empresa.
   ├── Data Source                        # Contiene las tablas en formato .xlsx
   |── Images                             # Carpeta donde se alojan los íconos.
   ├── Chief Financial Officer.pbix       # Archivo que será ejecutado con Power BI Desktop.
+  |── UDF.txt                            # Contiene las funciones definidas por el usuario.                
   └── README.md                          # Este archivo.
 </code>
 
