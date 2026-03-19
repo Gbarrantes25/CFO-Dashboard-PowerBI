@@ -1,4 +1,4 @@
-# CFO-Dashboard-PowerBI
+# CFO Dashboard
 
 ## 📃 Descripción General
 Este proyecto fue elaborado para una empresa del rubro fastfood con una oficina central y 5 tiendas en Perú. Los datos empleados son ficticios.
