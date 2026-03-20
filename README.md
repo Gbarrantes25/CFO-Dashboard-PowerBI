@@ -1,14 +1,14 @@
 # CFO Dashboard
 
 ## 📃 Descripción General
-Dashboard interactivo de ventas de cadena de restaurantes desarrollado en Power BI, diseñado para analizar el rendimiento comercial de múltiples sucursales en tiempo real.
-Este proyecto conecta una base de datos remota en Supabase (PostgreSQL) y transforma los datos en información accionable mediante:
+Dashboard ejecutivo para Directores Financieros (CFO) desarrollado en Power BI, diseñado para centralizar y analizar el estado financiero de una cadena de restaurantes en tiempo real.
+Este proyecto transforma datos contables en información estratégica mediante:
 
-- 📊 5 Vistas Analíticas: Overview, Branch, Customer, Seller y Products.
-- 🌙 Modo Claro/Oscuro: Switcher interactivo para personalizar la visualización.
-- 🖱️ Navegación Interactiva: Menú dinámico, tooltips y marcadores.
-- 📈 KPIs Avanzados: +25 medidas DAX (ventas, presupuesto, clientes, tendencias).
-- 🎯 Seguimiento de Metas: Comparativa Ventas vs Presupuesto con alertas visuales.
+- 📊 3 Vistas Analíticas: Overview, P&C Deep Dive y P&L (Estado de Resultados).
+- 💰 Estado de Resultados: Ingresos, COGS, gastos operativos, EBIT, EBITDA y utilidad neta.
+- 📈 KPIs Financieros: +30 medidas DAX (márgenes, costos, punto de equilibrio).
+- 🎯 Metas vs Real: Comparativa de márgenes objetivo vs. alcanzados.
+- 📅 Análisis Temporal: Tendencias mensuales y comparativas YoY (Year over Year).
 
 
 ## 📊 Contenido del proyecto
