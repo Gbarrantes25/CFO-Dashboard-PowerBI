@@ -1,8 +1,14 @@
 # CFO Dashboard
 
 ## 📃 Descripción General
-Este proyecto fue elaborado para una empresa del rubro fastfood con una oficina central y 5 tiendas en Perú. Los datos empleados son ficticios.
-La finalidad de este proyecto es revisar la salud financiera de la empresa.
+Dashboard interactivo de ventas de supermercado desarrollado en Power BI, diseñado para analizar el rendimiento comercial de múltiples sucursales en tiempo real.
+Este proyecto conecta una base de datos remota en Supabase (PostgreSQL) y transforma los datos en información accionable mediante:
+
+- 📊 5 Vistas Analíticas: Overview, Branch, Customer, Seller y Products.
+- 🌙 Modo Claro/Oscuro: Switcher interactivo para personalizar la visualización.
+- 🖱️ Navegación Interactiva: Menú dinámico, tooltips y marcadores.
+- 📈 KPIs Avanzados: +25 medidas DAX (ventas, presupuesto, clientes, tendencias).
+- 🎯 Seguimiento de Metas: Comparativa Ventas vs Presupuesto con alertas visuales.
 
 
 ## 📊 Contenido del proyecto
