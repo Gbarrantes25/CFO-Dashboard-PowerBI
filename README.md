@@ -1,7 +1,7 @@
 # CFO Dashboard
 
 ## 📃 Descripción General
-Dashboard interactivo de ventas de supermercado desarrollado en Power BI, diseñado para analizar el rendimiento comercial de múltiples sucursales en tiempo real.
+Dashboard interactivo de ventas de cadena de restaurantes desarrollado en Power BI, diseñado para analizar el rendimiento comercial de múltiples sucursales en tiempo real.
 Este proyecto conecta una base de datos remota en Supabase (PostgreSQL) y transforma los datos en información accionable mediante:
 
 - 📊 5 Vistas Analíticas: Overview, Branch, Customer, Seller y Products.
