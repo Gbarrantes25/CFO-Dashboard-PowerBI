@@ -251,7 +251,6 @@ CardPL = FX_CHOOSECARD(3)
 <details>
 <summary>🎥 Ver Video Demostrativo</summary>
 
-Puedes ver el funcionamiento completo del dashboard en el siguiente video:
 https://www.youtube.com/watch?v=ISpue331_Y8
 </details>
 
