@@ -1,0 +1,67 @@
+table DimEntity
+	lineageTag: 4a63ddab-119e-4a9f-a3c6-34efe625713b
+
+	column Id_Entity
+		dataType: int64
+		formatString: 0
+		lineageTag: 3760a22a-d53e-4327-b767-2cf8b4e58773
+		summarizeBy: none
+		sourceColumn: Id_Entity
+
+		annotation SummarizationSetBy = Automatic
+
+	column RUC/DNI/DOC
+		dataType: string
+		lineageTag: 50c70f7a-91bd-452c-981e-327d50398416
+		summarizeBy: none
+		sourceColumn: RUC/DNI/DOC
+
+		annotation SummarizationSetBy = Automatic
+
+	column Name
+		dataType: string
+		lineageTag: ed098bc7-52be-4d6b-a520-a7e28f3cd8f3
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Entity_type
+		dataType: string
+		lineageTag: 84523a19-6509-4721-8733-8e81bc816f18
+		summarizeBy: none
+		sourceColumn: Entity_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 583c958d-7aff-4cbc-9345-a857a02b408e
+		dataCategory: Country
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		dataType: string
+		lineageTag: 7f35d76b-7155-441e-9cc1-93411fd51b31
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimEntity = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(Web.Contents("https://docs.google.com/spreadsheets/d/e/2PACX-1vQdYxEJXUrJNWj8e_BcxMak93N0ovnqHPsCZdokK_iZm4UyWCMBerzpfZDUcbVO4ma1ZKAYeFwKGh-V/pub?gid=1860496830&single=true&output=csv"),[Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Id_Entity", Int64.Type}, {"RUC/DNI/DOC", type text}, {"Name", type text}, {"Entity_type", type text}, {"Country", type text}, {"Type", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

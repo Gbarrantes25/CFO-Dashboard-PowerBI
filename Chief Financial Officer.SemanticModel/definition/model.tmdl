@@ -1,0 +1,28 @@
+model Model
+	culture: es-ES
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: es-PE
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Fact_Revenue","Fact_Expenses","DimEntity","DimBranch","DimSubcategory","DimProducts","DimDocument","DimCenterCost","_Measures"]
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","CalcGroup","DevMode"]
+
+ref table Fact_Revenue
+ref table Fact_Expenses
+ref table DimEntity
+ref table DimBranch
+ref table DimSubcategory
+ref table DimProducts
+ref table DimDocument
+ref table DimCenterCost
+ref table Calendar
+ref table _Measures
+
+ref cultureInfo es-ES
+

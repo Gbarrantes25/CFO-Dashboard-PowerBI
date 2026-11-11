@@ -1,0 +1,70 @@
+table DimProducts
+	lineageTag: a4ebb1ca-d4b0-4a7a-811d-aff6778814fd
+
+	column Id_Product
+		dataType: int64
+		formatString: 0
+		lineageTag: dd3d25af-6176-47bb-baaa-91feb0345d83
+		summarizeBy: none
+		sourceColumn: Id_Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		lineageTag: b4e347e1-127b-4731-b4ed-428da0490832
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: b64fe9c7-1a5a-4f9a-b3e6-7973ade1fad3
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column TypeProducto
+		dataType: string
+		lineageTag: bd0032c9-6830-4a7d-b74e-9d1bc3e964e9
+		summarizeBy: none
+		sourceColumn: TypeProducto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price_Unit
+		dataType: double
+		lineageTag: 18243cea-235c-4265-a6ed-7199eb80968d
+		summarizeBy: none
+		sourceColumn: Price_Unit
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Theoretical_Unit_Cost
+		dataType: double
+		lineageTag: 5f284a2f-92a3-4313-aeca-d4d42d30528a
+		summarizeBy: none
+		sourceColumn: Theoretical_Unit_Cost
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition DimProducts = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(Web.Contents("https://docs.google.com/spreadsheets/d/e/2PACX-1vSTxIpD47q6jTtZ_hJNbzMUgSWeUIa_PyrKuRk5f5HUcqzEKc27Lz0iDX_Jb09mLrxgNussrsBu7dT5/pub?gid=248530384&single=true&output=csv"),[Delimiter=",", Columns=6, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Id_Product", Int64.Type}, {"Product", type text}, {"Category", type text}, {"TypeProducto", type text}, {"Price_Unit", type number}, {"Theoretical_Unit_Cost", type number}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

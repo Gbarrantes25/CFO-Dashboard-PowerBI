@@ -1,0 +1,50 @@
+table DimDocument
+	lineageTag: 0e48382c-4ff7-48da-bcb6-ee29c37022aa
+
+	column Id_Document
+		dataType: int64
+		formatString: 0
+		lineageTag: f5f50d79-a517-4f9f-b84e-e1fa0838dc54
+		summarizeBy: none
+		sourceColumn: Id_Document
+
+		annotation SummarizationSetBy = Automatic
+
+	column Document_Type
+		dataType: string
+		lineageTag: 9087c8d8-1926-46f0-8e3c-3c45a5669b49
+		summarizeBy: none
+		sourceColumn: Document_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column Prefix
+		dataType: string
+		lineageTag: 6d1a30f7-5c87-439f-b42b-0a29cf2caead
+		summarizeBy: none
+		sourceColumn: Prefix
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tax
+		dataType: string
+		lineageTag: 69a11d9a-4913-4102-9112-4969ee5afdbb
+		summarizeBy: none
+		sourceColumn: Tax
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDocument = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(Web.Contents("https://docs.google.com/spreadsheets/d/e/2PACX-1vTQruzVx53OPt6nqljWb9V0UhzNSA-1QDAqtTc7W8rvEqivT19gLfvHCmXC9q5nKpwBjT9Qh_1o7595/pub?gid=775268392&single=true&output=csv"),[Delimiter=",", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Id_Document", Int64.Type}, {"Document_Type", type text}, {"Prefix", type text}, {"Tax", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

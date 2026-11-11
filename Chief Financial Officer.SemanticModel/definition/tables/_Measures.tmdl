@@ -1,0 +1,249 @@
+table _Measures
+	lineageTag: 24403e82-457e-46bc-a685-ef941d9de838
+
+	measure #Revenue = SUMX(Fact_Revenue,Fact_Revenue[Quantity]*RELATED(DimProducts[Price_Unit]))
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Basics
+		lineageTag: e997868d-3c67-41c3-8adb-4879a3c79a16
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure #Expenses = SUMX(Fact_Expenses,Fact_Expenses[Subtotal])
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Basics
+		lineageTag: 8acd5847-6db8-47ef-9e0c-70dc0b6fa0aa
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure '#Net Income' = [#EBT]-[#Income Tax Expense]
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Income Statement
+		lineageTag: 5f8e4393-8b5f-4099-ac78-b874c837b195
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure '#Net Margin on Op.Rev(%)' = fx_OverOperatingRevenue([#Net Income])
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Income Statement
+		lineageTag: d5d85b96-cecb-468f-9ac7-420fce31531d
+
+	measure '#BEP Sales' = DIVIDE([#Fixed Cost],1-fx_OverOperatingRevenue([#Variable Cost]),0)
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Financial
+		lineageTag: 0d1cafdf-b93f-4f6a-a3eb-311888ab5f03
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure '#COGS Ratio(%)' = fx_OverOperatingRevenue(fx_ExpenseCategory({"Cost of Goods Sold"}))
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Financial
+		lineageTag: bc1dc8db-3f17-4115-89d0-e37aa961e99b
+
+	measure '#Gross Profit' = fx_RevenueCategory({"Revenue"}) - fx_ExpenseCategory({"Cost of Goods Sold"})
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Income Statement
+		lineageTag: 532b14d1-a62f-41b4-9f51-98be8abf67e7
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure #Opex = fx_ExpenseLineItem({"Operating Expenses"})
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Financial
+		lineageTag: 134007b1-7799-4450-adcc-9fd2d6e3cef1
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure #EBIT = [#Gross Profit]-[#Opex]
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Income Statement
+		lineageTag: 3bcfccd6-2eef-4fa8-80f3-468252c7272d
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure '#Income Tax Expense' = [#EBT]*0.295
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Income Statement
+		lineageTag: a464e3cd-4456-4e1d-903b-a3b6ce022b76
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure #EBT = [#EBIT]+fx_RevenueCategory({"Other Income"})-fx_ExpenseCategory({"Financial Expenses"})
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Income Statement
+		lineageTag: bb0c3056-9850-4332-ac87-b6204d07de27
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure #Depreciation = fx_ExpenseCategory({"Depreciation Expenses"})
+		displayFolder: Income Statement
+		lineageTag: 1871d00c-7264-4bd0-9409-8632d8a08c07
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure #EBITDA = [#EBIT]+[#Depreciation]
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Financial
+		lineageTag: 87cb2da9-64e8-43c6-a97c-7a428a21bffa
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure '#Variable Cost' = fx_ExpenseCostType({"Variable Cost"})
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Financial
+		lineageTag: 68b1c3b7-2546-48ae-9566-5ca98445b94b
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure '#Fixed Cost' = fx_ExpenseCostType({"Fixed Cost"})
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Financial
+		lineageTag: 6c720857-214f-40e0-8c65-db4a90733c0f
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure '#Gross Profit Margin(%)' = fx_OverOperatingRevenue([#Gross Profit])
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Income Statement
+		lineageTag: cfe3eb26-3edb-4fc4-b898-6ce50310287b
+
+	measure '#Operating Margin(%)' = fx_OverOperatingRevenue([#EBIT])
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Income Statement
+		lineageTag: b9050eba-bc72-47cc-8de0-8cee78ae28fc
+
+	measure '#EBITDA Margin(%)' = fx_OverOperatingRevenue([#EBIT]+[#Depreciation])
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Financial
+		lineageTag: b9f71c88-d4ff-4d81-a26d-e556a59195f1
+
+	measure '#Operating Revenue' = fx_RevenueCategory({"Revenue"})
+		displayFolder: Income Statement
+		lineageTag: eee1f968-676c-4588-b041-bb72d578528e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '#Cost of Goods Sold' = fx_ExpenseSubcategory({"Supplies and Materials","Packaging","Beverages"})
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Income Statement
+		lineageTag: 41f3f71e-ae23-40e4-a1a7-0a5dea052628
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure '#Store Operating Expenses' = fx_ExpenseCategory({"Store Operating Expenses"})
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Income Statement
+		lineageTag: 8b58cead-3323-44b8-bf3b-1fc660d23292
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure '#Selling Expenses' = fx_ExpenseCategory({"Selling Expenses"})
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Income Statement
+		lineageTag: c1bf0b1b-32ec-4635-a79f-9c9642b49b0d
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure '#Administrative Expenses' = fx_ExpenseCategory({"Administrative Expenses"})
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Income Statement
+		lineageTag: ff94406c-d763-44e6-a5fb-da32143ed55b
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure '#Other Income' = fx_RevenueCategory({"Other Income"})
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Income Statement
+		lineageTag: 81a5d487-5eed-4ddb-94a6-76bbc7fdcd95
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure '#Financial Expenses' = fx_ExpenseCategory({"Financial Expenses"})
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Income Statement
+		lineageTag: 75498eaf-d04e-4299-8796-5ee231c1546a
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure '#Net Margin on Total Rev(%)' = DIVIDE([#Net Income],[#Revenue],0)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Financial
+		lineageTag: 618dd547-0e8f-4a94-b8f0-f9f5473798f5
+
+	measure '#Margin of Safety(%)' = DIVIDE([#Operating Revenue]-[#BEP Sales],[#Operating Revenue],0)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Financial
+		lineageTag: 9ece7d04-c49e-44f4-8e25-394f5a9eef06
+
+	measure '#LY Operating Revenue' = fx_LY([#Operating Revenue])
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		displayFolder: Basics
+		lineageTag: e2b51798-6c63-41f9-8d1d-3c424f8b1211
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	measure '#YoY Operating Rev(%)' = fx_YoY([#Operating Revenue],[#LY Operating Revenue])
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Basics
+		lineageTag: 5188573a-d600-4b5b-a7bf-b1dba3708c66
+
+	measure SelectedImg = ```
+			
+			VAR result =
+			    SWITCH (
+			        TRUE (),
+			        SELECTEDVALUE ( DimBranch[Branch], "Seleccionar todo" ) = "Seleccionar todo", fx_ChooseImg(1),
+			        SELECTEDVALUE ( DimBranch[Branch] ) = "Oficina Central", fx_ChooseImg(2),
+			        SELECTEDVALUE ( DimBranch[Branch] ) = "T. Dasso", fx_ChooseImg(3),
+			        SELECTEDVALUE ( DimBranch[Branch] ) = "T. Arequipa", fx_ChooseImg(4),
+			        SELECTEDVALUE ( DimBranch[Branch] ) = "T. Ica", fx_ChooseImg(5),
+			        SELECTEDVALUE ( DimBranch[Branch] ) = "T. Chiclayo", fx_ChooseImg(6),
+			        SELECTEDVALUE ( DimBranch[Branch] ) = "T. Cusco", fx_ChooseImg(7)
+			    )
+			RETURN
+			    result
+			
+			```
+		lineageTag: 22f86ca7-6495-4511-a301-52a76abdc2c0
+
+	measure CardBranch = fx_ChooseCard(2)
+		displayFolder: HTML Visuals
+		lineageTag: 75111e17-4878-455f-a813-bfc2c1aa9bb3
+
+	measure CardOverview = fx_ChooseCard(1)
+		displayFolder: HTML Visuals
+		lineageTag: 110db62a-c959-4486-b213-193ea6c0fcbb
+
+	measure 'COGS(%) Target' = 0.3
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Target
+		lineageTag: 7636844c-557b-40ec-83ed-1054c3802fb6
+
+	measure 'Operating Margin (%) Target' = 0.12
+		displayFolder: Target
+		lineageTag: 4960ac29-4255-4fd9-ab9b-f743a02248f0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure CardPL = fx_ChooseCard(3)
+		displayFolder: HTML Visuals
+		lineageTag: 48676519-69a4-40e8-8e60-1f1bb6bd1f0a
+
+	measure #ExpOverOpeRev(%) = DIVIDE([#Expenses],CALCULATE([#Operating Revenue],ALL('Calendar'[#Month]),ALL(DimSubcategory[Subcategory])),0)
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		displayFolder: Financial
+		lineageTag: 886a466b-0d40-41f8-8d69-5845e66fe387
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Origen = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Columna1 = _t]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(Origen,{{"Columna1", type text}}),
+				    #"Columnas quitadas" = Table.RemoveColumns(#"Tipo cambiado",{"Columna1"})
+				in
+				    #"Columnas quitadas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegación
+

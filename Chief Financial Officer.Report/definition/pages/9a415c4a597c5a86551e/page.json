@@ -1,0 +1,90 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "9a415c4a597c5a86551e",
+  "displayName": "P&C Deep Dive",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": -0.1
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspace": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "f1b47cec599cbacf1a01",
+      "target": "e2e35d7cd645b12763ab",
+      "type": "NoFilter"
+    },
+    {
+      "source": "f1b47cec599cbacf1a01",
+      "target": "2e03f7ee02779bf63b81",
+      "type": "NoFilter"
+    },
+    {
+      "source": "f1b47cec599cbacf1a01",
+      "target": "14419b6b678cf880b8d5",
+      "type": "NoFilter"
+    },
+    {
+      "source": "f1b47cec599cbacf1a01",
+      "target": "1b4adf9a82900a11a21d",
+      "type": "NoFilter"
+    },
+    {
+      "source": "40eae9de82fc4141166d",
+      "target": "a145236d67d45d2348d3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "25442e33e74ab6bf36c3",
+      "target": "a145236d67d45d2348d3",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7c31e8cb2d731877f75c",
+      "target": "a145236d67d45d2348d3",
+      "type": "NoFilter"
+    }
+  ]
+}

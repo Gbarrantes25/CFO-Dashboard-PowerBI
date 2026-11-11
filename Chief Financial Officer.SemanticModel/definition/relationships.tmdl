@@ -1,0 +1,56 @@
+relationship AutoDetected_e13028c6-f89e-4ae8-9363-12fb97db5ebb
+	fromColumn: Fact_Revenue.Id_Branch
+	toColumn: DimBranch.Id_Branch
+
+relationship AutoDetected_37daf93f-75c4-4759-9456-033dd698a88f
+	fromColumn: Fact_Expenses.Id_Branch
+	toColumn: DimBranch.Id_Branch
+
+relationship AutoDetected_2327970d-91d6-47a5-9df9-2d514c26350c
+	fromColumn: Fact_Revenue.Id_Entity
+	toColumn: DimEntity.Id_Entity
+
+relationship AutoDetected_dc6d773b-94c4-4586-afb7-57dc0bcf0bc4
+	fromColumn: Fact_Expenses.Id_Entity
+	toColumn: DimEntity.Id_Entity
+
+relationship AutoDetected_ce430c5a-fbc3-42e5-b3c9-b97a354eff1f
+	fromColumn: Fact_Revenue.Id_Subcategory
+	toColumn: DimSubcategory.Id_Subcategory
+
+relationship AutoDetected_4abd298e-1b9c-4a7e-8ada-6acfb8d2514b
+	fromColumn: Fact_Expenses.Id_Subcategory
+	toColumn: DimSubcategory.Id_Subcategory
+
+relationship AutoDetected_3ea3ef0e-5903-41d1-9aa8-f7b5fdd00f4e
+	fromColumn: Fact_Revenue.Id_Document
+	toColumn: DimDocument.Id_Document
+
+relationship AutoDetected_946f7362-b4fb-4ae6-91bc-26078712f4fd
+	fromColumn: Fact_Expenses.Id_Document
+	toColumn: DimDocument.Id_Document
+
+relationship AutoDetected_a88b2670-1069-49f2-a5ca-87f2f36c1079
+	fromColumn: Fact_Revenue.Id_Product
+	toColumn: DimProducts.Id_Product
+
+relationship AutoDetected_b6105181-e29c-4db8-87b3-fe76faa50921
+	fromColumn: Fact_Expenses.Id_Product
+	toColumn: DimProducts.Id_Product
+
+relationship 43057815-b83d-80e7-c801-1a026d1c2747
+	fromColumn: Fact_Revenue.Id_CostCenter
+	toColumn: DimCenterCost.Id_CenterCost
+
+relationship 18ff1aad-382a-d222-9b87-3e94cb324ad9
+	fromColumn: Fact_Expenses.Id_CostCenter
+	toColumn: DimCenterCost.Id_CenterCost
+
+relationship dd9c25ad-5eab-9f3a-0a7b-81d95d3bca6b
+	fromColumn: Fact_Revenue.Id_Date
+	toColumn: Calendar.Date
+
+relationship a85457d9-9c3d-88ae-8aed-938c73da616e
+	fromColumn: Fact_Expenses.Id_Date
+	toColumn: Calendar.Date
+

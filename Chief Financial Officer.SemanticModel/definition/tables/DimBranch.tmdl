@@ -1,0 +1,64 @@
+table DimBranch
+	lineageTag: c8e414cc-73ed-49bb-8f17-f59d370ebd14
+
+	column Id_Branch
+		dataType: int64
+		formatString: 0
+		lineageTag: ad72466f-4371-4ccb-9338-2b4e9a0077cf
+		summarizeBy: none
+		sourceColumn: Id_Branch
+
+		annotation SummarizationSetBy = Automatic
+
+	column Branch
+		dataType: string
+		lineageTag: 0530d2e7-863d-4c2f-a76b-5a75d641e8f5
+		summarizeBy: none
+		sourceColumn: Branch
+		sortByColumn: Id_Branch
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 71c9399b-22db-4e81-83e2-3900913cb3ef
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Latitude
+		dataType: string
+		lineageTag: 02639283-41dc-46dc-8447-bf623d59e322
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+	column Longitude
+		dataType: string
+		lineageTag: a460101c-adda-4d14-8e2a-f2295b065a1b
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimBranch = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(Web.Contents("https://docs.google.com/spreadsheets/d/e/2PACX-1vRrnh7vDS9fWZCEFM33f8N4ONGDAaNxtVZlCXSu1Xkk4VzeMw6crpXo3oNwvHwDch6I3bS6qCbjt-tq/pub?gid=1431746542&single=true&output=csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Id_Branch", Int64.Type}, {"Branch", type text}, {"City", type text}, {"Latitude", type text}, {"Longitude", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

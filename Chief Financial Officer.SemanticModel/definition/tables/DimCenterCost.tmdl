@@ -1,0 +1,34 @@
+table DimCenterCost
+	lineageTag: 331baf1f-4339-4a66-a5f1-a62bf45bc512
+
+	column Id_CenterCost
+		dataType: int64
+		formatString: 0
+		lineageTag: 7bd84755-8c64-47f5-ae7f-c351429d475f
+		summarizeBy: none
+		sourceColumn: Id_CenterCost
+
+		annotation SummarizationSetBy = User
+
+	column Cost_Center
+		dataType: string
+		lineageTag: 114a553c-9742-406a-a9f6-c4466eb509b6
+		summarizeBy: none
+		sourceColumn: Cost_Center
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCenterCost = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(Web.Contents("https://docs.google.com/spreadsheets/d/e/2PACX-1vQ6PFClLjBQaGVinUTTAXvkXU9rfNwU-3kiuux2qMyL-WZl7p7AjV3gJRHp8UhZhuz_MLB8PLyaL8z1/pub?gid=1517220622&single=true&output=csv"),[Delimiter=",", Columns=2, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Id_CenterCost", Int64.Type}, {"Cost_Center", type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,213 @@
+table Calendar
+	lineageTag: 14052480-75d1-4a5f-b9b1-691f09e84d1c
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: dd/mm/yyyy
+		lineageTag: 0dfb93a5-5150-4595-823c-e3f303561c21
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column #Year
+		formatString: 0
+		lineageTag: 69987107-9273-46d5-ab34-eb2650cda9b0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [#Year]
+
+		annotation SummarizationSetBy = User
+
+	column #Quarter
+		formatString: 0
+		lineageTag: ed12b894-0fac-40fa-9497-7e4aa6fb4624
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [#Quarter]
+
+		annotation SummarizationSetBy = User
+
+	column Quarter
+		lineageTag: 3de27e17-a5b7-4bfc-abb3-2e6dee7b1e65
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+		sortByColumn: #Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column #Month
+		formatString: 0
+		lineageTag: 19d949c8-ff34-43a8-adbd-115556d46a96
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [#Month]
+
+		annotation SummarizationSetBy = User
+
+	column Month
+		lineageTag: 475556d6-2404-4900-9133-a37b0c8b9f5a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+		sortByColumn: #Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		lineageTag: 4f87f443-abe5-49e7-938b-ffae8c875737
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Day]
+		sortByColumn: #Weekday
+
+		annotation SummarizationSetBy = Automatic
+
+	column #Day
+		formatString: 0
+		lineageTag: 9dcb29ac-57cd-4fbd-ac36-5a162b2c51f6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [#Day]
+
+		annotation SummarizationSetBy = User
+
+	column Holiday
+		formatString: 0
+		lineageTag: b9ec40ca-4bb2-4aa7-bbec-eee7a78ec0de
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Holiday]
+
+		annotation SummarizationSetBy = User
+
+	column Weekend
+		formatString: 0
+		lineageTag: 6524edc2-5bd5-415f-aa22-a97ead52eef2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Weekend]
+
+		annotation SummarizationSetBy = User
+
+	column #Weeknum
+		formatString: 0
+		lineageTag: e38ff181-7ef2-4fe1-a700-cf564cf2f023
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [#Weeknum]
+
+		annotation SummarizationSetBy = User
+
+	column #Weekday
+		formatString: 0
+		lineageTag: e21846ac-f4c9-4d3b-a7d5-0c1f151cc816
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [#Weekday]
+
+		annotation SummarizationSetBy = User
+
+	hierarchy 'Jerarquía Date'
+		lineageTag: df353ac7-e039-4f79-acd6-eb46724e5cfe
+
+		level #Year
+			lineageTag: 9db8ef70-6efc-4fa4-a5ba-b90e3aa9c1fa
+			column: #Year
+
+		level #Quarter
+			lineageTag: 589b71ec-ed23-4cf3-9cb6-65dc8709ab51
+			column: #Quarter
+
+		level #Month
+			lineageTag: 5d852eea-2ce2-4e76-9ee5-4dc524a83ce9
+			column: #Month
+
+	partition Calendar = calculated
+		mode: import
+		source =
+				
+					VAR holidays = {
+						"01/01/2023",
+						"01/01/2024",
+						"01/01/2025",
+						"01/01/2026",
+						"28/07/2023",
+						"29/07/2023",
+						"28/07/2024",
+						"29/07/2024",
+						"28/07/2025",
+						"29/07/2025",
+						"24/12/2023",
+						"25/12/2023",
+						"24/12/2024",
+						"25/12/2024",
+						"24/12/2025",
+						"25/12/2025",
+						"01/11/2023",
+						"01/11/2024",
+						"01/11/2025",
+						"01/05/2023",
+						"01/05/2024",
+						"01/05/2025",
+						"06/04/2023",
+						"07/04/2023",
+						"28/03/2024",
+						"29/03/2024",
+						"17/04/2025",
+						"18/04/2025",
+						"29/06/2023",
+						"29/06/2024",
+						"29/06/2025",
+						"08/10/2023",
+						"08/10/2024",
+						"08/10/2025",
+						"08/12/2023",
+						"08/12/2024",
+						"08/12/2025"
+					}
+					VAR result = ADDCOLUMNS(
+						CALENDAR(
+							FIRSTDATE(Fact_Revenue[Id_Date]),
+							LASTDATE(Fact_Revenue[Id_Date])
+						),
+						"#Year", YEAR([Date]),
+						"#Quarter", QUARTER([Date]),
+						"Quarter", "Q" & QUARTER([Date]),
+						"#Month", MONTH([Date]),
+						"Month", FORMAT(
+							[Date],
+							"MMM",
+							"En-US"
+						),
+						"#Weeknum", WEEKNUM(
+							[Date],
+							2
+						),
+				        "#Weekday",WEEKDAY([Date],2),
+						"Day", FORMAT(
+							[Date],
+							"DDD",
+							"En_US"
+						),
+						"#Day", DAY([Date]),
+						"Holiday", IF(
+							FORMAT(
+								[Date],
+								"DD/MM/YYYY"
+							) IN holidays,
+							1,
+							0
+						),
+				        "Weekend",IF(FORMAT([Date],"DDD","En-US") IN {"Sun","Sat"},1,0)
+					)
+					RETURN
+						result
+
+	annotation PBI_Id = ef5c54ba5b594905bb69fff64419ead6
+

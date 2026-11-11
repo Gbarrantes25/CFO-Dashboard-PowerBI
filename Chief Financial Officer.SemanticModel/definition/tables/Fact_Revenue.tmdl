@@ -1,0 +1,143 @@
+table Fact_Revenue
+	lineageTag: 95c8c022-93c4-4e76-9b82-b2103799dbe9
+
+	column Id_Revenue
+		dataType: int64
+		formatString: 0
+		lineageTag: 8b6cd0ec-a241-45b2-b82e-f9ebd893af7f
+		summarizeBy: none
+		sourceColumn: Id_Revenue
+
+		annotation SummarizationSetBy = User
+
+	column Id_Date
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: cd34a262-eb63-4dc8-bcf1-c0537d6458d3
+		summarizeBy: none
+		sourceColumn: Id_Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Id_Branch
+		dataType: int64
+		formatString: 0
+		lineageTag: a82f2a1a-04dc-48a3-b46e-7afdbd33d18a
+		summarizeBy: none
+		sourceColumn: Id_Branch
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id_Entity
+		dataType: int64
+		formatString: 0
+		lineageTag: 45df1a20-e03a-40b4-a98b-0ec19d6cb7f4
+		summarizeBy: none
+		sourceColumn: Id_Entity
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id_CostCenter
+		dataType: int64
+		formatString: 0
+		lineageTag: 6333cdba-5e29-4351-a876-af16cdfb0a3c
+		summarizeBy: none
+		sourceColumn: Id_CostCenter
+
+		annotation SummarizationSetBy = User
+
+	column Id_Subcategory
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a3caf4f-47c3-4170-988d-36ecfe730bbf
+		summarizeBy: none
+		sourceColumn: Id_Subcategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id_Document
+		dataType: int64
+		formatString: 0
+		lineageTag: a31a624f-a889-4bb0-a4d2-ca35887ce4b8
+		summarizeBy: none
+		sourceColumn: Id_Document
+
+		annotation SummarizationSetBy = Automatic
+
+	column N_Document
+		dataType: string
+		lineageTag: 35095e74-54f4-46b6-890b-4e8366ab8184
+		summarizeBy: none
+		sourceColumn: N_Document
+
+		annotation SummarizationSetBy = Automatic
+
+	column Id_Product
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b9d5093-4c17-4af3-a0ed-af626efed313
+		summarizeBy: none
+		sourceColumn: Id_Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quantity
+		dataType: int64
+		formatString: 0
+		lineageTag: e58debe4-a685-450e-8176-930b3ab7c7de
+		summarizeBy: none
+		sourceColumn: Quantity
+
+		annotation SummarizationSetBy = User
+
+	column Price_Unit
+		dataType: double
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		lineageTag: d1f94966-39c4-45a0-af35-a18627bc1a43
+		summarizeBy: none
+		sourceColumn: Price_Unit
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	column Subtotal
+		dataType: double
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		lineageTag: 30bdb057-6bd7-41f6-a87a-b8a9062401d6
+		summarizeBy: none
+		sourceColumn: Subtotal
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	column Tax
+		dataType: double
+		formatString: "S/"\ #,0.00;-"S/"\ #,0.00;"S/"\ #,0.00
+		lineageTag: ebf271a8-2673-4900-96a6-2fbe60f327b2
+		summarizeBy: none
+		sourceColumn: Tax
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-PE"}
+
+	partition Fact_Revenue = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(Web.Contents("https://docs.google.com/spreadsheets/d/e/2PACX-1vRebdrai3eny64GPrLjRAXhuSBqzXV18BFVRNUi4ULliH3oE4Py7HgJ5Ri4DK8QM9S6jmMKjRUqZrcG/pub?gid=147943285&single=true&output=csv"),[Delimiter=",", Columns=13, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Id_Revenue", Int64.Type}, {"Id_Date", type date}, {"Id_Branch", Int64.Type}, {"Id_Entity", Int64.Type}, {"Id_CostCenter", Int64.Type}, {"Id_Subcategory", Int64.Type}, {"Id_Document", Int64.Type}, {"N_Document", type text}, {"Id_Product", Int64.Type}, {"Quantity", Int64.Type}, {"Price_Unit", type number}, {"Subtotal", type number}, {"Tax", type number}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

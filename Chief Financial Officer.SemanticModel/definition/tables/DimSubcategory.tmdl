@@ -1,0 +1,58 @@
+table DimSubcategory
+	lineageTag: 07c05ff9-6256-4357-ad13-62e0b0eab351
+
+	column Id_Subcategory
+		dataType: int64
+		formatString: 0
+		lineageTag: f9f1c624-06ee-4375-a551-1a03c171703e
+		summarizeBy: none
+		sourceColumn: Id_Subcategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column Subcategory
+		dataType: string
+		lineageTag: a5c18ef9-cb34-46d4-8790-cbc6d4beb94e
+		summarizeBy: none
+		sourceColumn: Subcategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: 2ca3bbde-2eb0-48ec-ab7b-6002956f3895
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column Line_Item
+		dataType: string
+		lineageTag: bf4adb5f-4eb9-4b6e-ac10-3864cc82843b
+		summarizeBy: none
+		sourceColumn: Line_Item
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cost_Type
+		dataType: string
+		lineageTag: 8d70825e-f312-4b05-8813-f0bc5fc3c00d
+		summarizeBy: none
+		sourceColumn: Cost_Type
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimSubcategory = m
+		mode: import
+		source =
+				let
+				    Origen = Csv.Document(Web.Contents("https://docs.google.com/spreadsheets/d/e/2PACX-1vR-7RPQosGMlYZkvK3IKwo5y0rfu0R30MR5KTvHY-vq-UF476O0ussKhzuJ5_hfCZowZ9Zo9WmoyX_C/pub?gid=571723735&single=true&output=csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Encabezados promovidos" = Table.PromoteHeaders(Origen, [PromoteAllScalars=true]),
+				    #"Tipo cambiado" = Table.TransformColumnTypes(#"Encabezados promovidos",{{"Id_Subcategory", Int64.Type}, {"Subcategory", type text}, {"Category", type text},{"Line_Item",type text}})
+				in
+				    #"Tipo cambiado"
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+
